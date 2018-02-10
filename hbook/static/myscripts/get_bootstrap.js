@@ -209,9 +209,12 @@ class Button{
         button.appendChild(textNode)
         button.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored'
         componentHandler.upgradeElement(button)
-        this.Button = button
+        this.element = button
         this.textNode = textNode
     }
+    setText(str){this.element.innerHTML = str}
+    disabled(){this.element.disabled=true}
+    enabled(){this.element.disabled=false}
 }
 class FabButton{
     constructor(){
@@ -227,6 +230,8 @@ class FabButton{
         this.element = button
         thisPage.components.push(this)
     }
+    disabled(){this.element.disabled=true}
+    enabled(){this.element.disabled=false}
 }
 class card{
     constructor(title="card", body="",foot="footer")
@@ -264,8 +269,8 @@ class card{
 class InputNumField{
     constructor(label="Number", onWrongInput="Wrong Input"){
         this.id = thisPage.components.length
-        this.mainContainer = document.createElement('div')
-        this.mainContainer.className = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+        this.element = document.createElement('div')
+        this.element.className = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
         
         this.input = document.createElement('input')
         this.input.className = "mdl-textfield__input"
@@ -282,23 +287,26 @@ class InputNumField{
         this.span.className = "mdl-textfield__error"
         this.span.innerHTML = onWrongInput
 
-        this.mainContainer.appendChild(this.input)
-        this.mainContainer.appendChild(this.label)
-        this.mainContainer.appendChild(this.span)
+        this.element.appendChild(this.input)
+        this.element.appendChild(this.label)
+        this.element.appendChild(this.span)
 
         
-        componentHandler.upgradeElement(this.mainContainer)
+        componentHandler.upgradeElement(this.element)
 
         thisPage.components.push(this)
     }
+    setText(str){this.element.innerHTML = "str"}
+    disabled(){this.input.disabled=true}
+    enabled(){this.input.disabled=false}
 }
 class InputTextField{
     constructor(label="Name"){
         this.id = thisPage.components.length
         thisPage.components.push(this)
         
-        this.mainContainer = document.createElement('div')
-        this.mainContainer.className = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+        this.element = document.createElement('div')
+        this.element.className = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
         
         this.input = document.createElement('input')
         this.input.className = "mdl-textfield__input"
@@ -310,10 +318,12 @@ class InputTextField{
         this.label.setAttribute("for", this.id+2)
         this.label.innerHTML = label
 
-        this.mainContainer.appendChild(this.input)
-        this.mainContainer.appendChild(this.label)
+        this.element.appendChild(this.input)
+        this.element.appendChild(this.label)
             
-        componentHandler.upgradeElement(this.mainContainer)
+        componentHandler.upgradeElement(this.element)
 
     }
+    disabled(){this.input.disabled=true}
+    enabled(){this.input.disabled=false}
 }

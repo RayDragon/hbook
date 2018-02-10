@@ -11,12 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../myscripts/get_bootstrap.js"></script>
     <script src="./schoolScripts/schoolManager.js"></script>
-    <script>
-        var sm;
-        $(document).ready(function(){
-            thisPage.initialize(()=>{sm=new schoolManager();});
-        });
-    </script>
     <style>
         body::-webkit-scrollbar {
             width: 4px;
@@ -139,5 +133,46 @@
 
 </html>
 <script>
+createSchool=
+    {
+            card:'',
+            inpschname:'',
+            get:function(){
+                this.card = new card("Create School", "", "");
+                this.card.title.innerHTML = "Create School"
+                this.inpschname = new InputTextField("School Name")
+                this.subBtn = new Button("Create")
+                this.card.body.appendChild(this.inpschname.element)
+                this.card.foot.appendChild(this.subBtn.element)
+                this.subBtn.element.onclick = ()=>this.onSubmitListener()
+
+            },
+            onSubmitListener:function(){
+                this.subBtn.disabled()
+                this.inpschname.disabled()
+                //this.subBtn.element.onclick = ""
+                this.subBtn.setText("please wait")
+                SchoolManager.create_school(this.inpschname.input.value,()=>{
+                    this.subBtn.enabled() 
+                    this.inpschname.enabled() 
+                    this.subBtn.setText("Create")
+                    //this.subBtn.element.onclick = ()=>this.onSubmitListener()
+                })
+            }
+    }
+    var sm;
+    function pagefiller()
+    {   
+        createSchool.get()
+        $('#home').append(createSchool.card.card)
+
+    }
     
+</script>
+<script>
+        $(document).ready(function(){
+            thisPage.initialize(()=>{SchoolManager.initialize()});
+            console.log(SchoolManager)
+            pagefiller();
+        });
 </script>

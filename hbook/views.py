@@ -6,6 +6,7 @@ from .models import Users
 
 def check_user(request):
     if request.method != "POST": raise Http404
+    error=""
     token = request.POST.get("id_token", "#")
     try:
         # Specify the CLIENT_ID of the app that accesses the backend:
@@ -27,23 +28,13 @@ def check_user(request):
         userid = idinfo['sub']
         print("got the user id", userid, idinfo['email'])
 
-        if is_logged(request):
+        if Users.is_logged(request):
             if request.session.get('email', '#') != idinfo['email']:
-                log_out(request)
-                request.session['email'] = idinfo['email']
-                if Users.objects.filter(email=idinfo['email']).count() < 1:
-                    usr = Users()
-                    usr.email = idinfo['email']
-                    usr.gid = userid
-                    usr.save()
-                error = "Okay"
-            else:
-                error = "Already Logged"
-        else:
-            request.session['email'] = idinfo['email']
-            error="Okay"
+                Users.logout(request)
+        Users.create_account(idinfo['email'], userid)
+        Users.login(request,idinfo['email'])
+        error="Okay"
     except ValueError:
-        # Invalid token
         pass
     return HttpResponse(error)
 
@@ -59,22 +50,19 @@ def get_csrf(request):
 
 def get_logout(request):
     if request.method != "POST": raise Http404
-    log_out(request)
-    return HttpResponse("Done")
+    if Users.logout(request):
+        return HttpResponse("Done")
+    return HttpResponse("error occurred")
 
 
 def log_out(request):
     del request.session['email']
 
 
-def is_logged(request):
-    return request.session.get('email', False)
-
-
 def check_login(request):
     if request.method != "POST":raise Http404
     try:
-        if is_logged(request):
+        if Users.is_logged(request):
             return HttpResponse("1")
     except:
             print("exception")
