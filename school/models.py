@@ -21,11 +21,19 @@ class School(models.Model):
         return 1
 
     @staticmethod
-    def list_school_details(crid):
+    def list_user_school_details(crid):
         a = School.objects.filter(creatorId=crid)
         b=[]
         for sch in a:
             b.append({'id':sch.id, 'name':sch.name, 'address':sch.address, 'details':sch.details})
+        return b
+
+    @staticmethod
+    def list_all_school_details():
+        a = School.objects.all()
+        b = []
+        for sch in a:
+            b.append({'id': sch.id, 'name': sch.name, 'address': sch.address, 'details': sch.details})
         return b
 
 

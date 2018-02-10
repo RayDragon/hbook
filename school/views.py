@@ -18,3 +18,16 @@ def create(request):
 
     raise Http404
 
+
+def get_list(request):
+    # if request.method != "POST" or not Users.is_logged(request): raise Http404
+    if request.POST.get('type', '#') == 'school':
+        kind = request.POST.get('kind', 'all')
+        if kind == 'all':
+            a = School.list_all_school_details()
+            return Response.json({'all_schools': a})
+        elif kind == 'both':
+            a = School.list_user_school_details(request.session['id'])
+            b = School.list_all_school_details()
+            return Response.json({'user_schools': a, 'all_schools': b})
+    return Response.json({}, 'failed', 'wrong credentials:'+str(33))
