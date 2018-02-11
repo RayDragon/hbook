@@ -37,6 +37,13 @@ class School(models.Model):
         return b
 
 
+class Student(models.Model):
+    'asdas'
+    name = models.CharField(max_length=50, null=False)
+    roll_number = models.CharField(max_length=20, null=False)
 
+
+class Class(models.Model):
+    name = models.CharField(max_length=20, null=False)
 
 

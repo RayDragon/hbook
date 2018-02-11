@@ -5,7 +5,8 @@ from hbook.response import Response
 
 
 def create(request):
-    if request.method != "POST" or not Users.is_logged(request): raise Http404
+    if request.method != "POST" or not Users.is_logged(request):
+        raise Http404
     if request.POST.get('type', '#') == 'school':
         if School.create_school(
                 request.session['id'],

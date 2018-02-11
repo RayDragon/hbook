@@ -37,3 +37,14 @@ class Users(models.Model):
         if request.session.get("id", "#") != "#":
             return True
         return False
+
+    @staticmethod
+    def get_details(usrid):
+        data={}
+        usr = Users.objects.get(id=usrid)
+        data['email']=usr.email
+        data['gid'] = usr.gid
+        import info
+        data['api'] = info.api
+        return data
+
