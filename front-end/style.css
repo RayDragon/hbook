@@ -1,0 +1,33 @@
+.bg-company-red {
+    background-color: purple;
+}
+
+#options {
+  background-color: purple;
+}
+
+#student {
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#teacher {
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#sec1 {
+  background-image: url("back3.jpg");
+  height: 400px;
+}
+
+#pills-profile-tab {
+    color: white;
+}
+
+.one {
+  font-size: 50px;
+  color: white;
+}
