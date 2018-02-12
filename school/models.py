@@ -1,5 +1,5 @@
 from django.db import models
-
+from myModules.fileDatabase import *
 
 class School(models.Model):
     creatorId = models.IntegerField(null=True)
@@ -36,14 +36,43 @@ class School(models.Model):
             b.append({'id': sch.id, 'name': sch.name, 'address': sch.address, 'details': sch.details})
         return b
 
+    def add_application(self, aid, app_as=1):
+        f = MFile("applications", [15, 15, 3])
+        f.insert_data([aid, self.id, app_as])
+        f.file.close()
 
-class Student(models.Model):
-    'asdas'
+class Teacher(models.Model):
+    school_ids = models.CommaSeparatedIntegerField()
     name = models.CharField(max_length=50, null=False)
     roll_number = models.CharField(max_length=20, null=False)
+    lecture_ids = models.CommaSeparatedIntegerField()
+    status = models.SmallIntegerField(default=-1)
 
 
-class Class(models.Model):
+class Student(models.Model):
+    current_school_id = models.PositiveIntegerField(max_length=50, default=0)
+    name = models.CharField(max_length=50, null=False)
+    roll_number = models.CharField(max_length=20, null=False)
+    group_ids=models.CommaSeparatedIntegerField()
+    status = models.SmallIntegerField(default=-1)
+
+    def apply_to_school(self, school_id):
+        self.current_school_id = school_id
+
+
+class Lecture(models.Model):
     name = models.CharField(max_length=20, null=False)
+    location = models.CharField(max_length=50)
+    time_from = models.PositiveIntegerField()
+    duration = models.PositiveIntegerField()
+    repeat = models.SmallIntegerField()
+    attendance = models.CommaSeparatedIntegerField()
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=20, null=False)
+    students = models.CommaSeparatedIntegerField()
+    bytearray("asdasd")
+
 
 
