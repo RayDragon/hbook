@@ -4,6 +4,8 @@
 
 #options {
   background-color: purple;
+  /*background-image: url("HMRITM-Delhi.jpg");*/
+  /*background-size: cover;*/
 }
 
 #student {
@@ -29,5 +31,10 @@
 
 .one {
   font-size: 50px;
+  color: white;
+}
+
+#card1 {
+  font-size: 25px;
   color: white;
 }

@@ -29,8 +29,15 @@
         <li class="nav-item" style="padding-left:5px">
           <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
         </li>
-        <li class="nav-item ml-auto">
-          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Sign in</a>
+        <li class="nav-item ml-auto dropdown">
+          <a class="nav-link dropdown-toggle" id="pills-profile-tab" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="pills-profile" aria-selected="false">Sign in</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
         </li>
       </ul>
     </div>
@@ -42,10 +49,13 @@
               <div class="row">
                 <img src="book.png" class="col-sm-1 rounded responsive-img" alt="" width="150px" height="150px" style="margin-top:30px" />
                 <p class="one col-sm-2 align-self-center">#Book</p>
-                <div class="col-sm-8 one align-middle">
+                <div class="col-sm-8 align-middle">
                   <div class="row h-100">
                     <div class="col-sm-12 align-self-center">
-                        <div class="w-25 mx-auto">Card</div>
+                        <div class="w-25 mx-auto">
+                          <p id="card1">Create you own school</p>
+                          <a class="btn btn-primary btn-lg rounded data-tooltip="click me!"" href="#create" role="button">Create>></a>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -56,7 +66,7 @@
         <div class="content.section" id="options">
           <div class="row">
             <div class="col row">
-              <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="col-sm-6 col-md-6 col-lg-6" id="create">
                 <div class="card" id="student">
                   <img class="card-img-top" src="stu.jpeg" alt="card image cap" height="300px" />
                   <div class="card-block text-center">
