@@ -1,40 +1,3 @@
-var h1={
-    content:"",
-    get:function(content){
-        return "<h1>"+content+"<h1>";
-        }
-},
-a={
-    get:function(Name, href, onclick){
-        return "<a href='"+href+"' onClick='"+onclick+"'>"+Name+"</a>";
-    }
-},
-well={
-    get:function(data){
-        return '<div class="well">'+data+'</div>';
-    }
-},
-row={
-    body:'',
-    add:function(size, data){
-        if(size='1/2'){}
-    },
-    get:function(){
-        data = '<div class="row">'+body+'</div>'
-    }
-}
-,
-pmGet={
-    card:function(params) {
-        data = "<div class='card'>"+
-                ""
-            "</div>";
-        return data;},
-    h1:function(head){
-        return "<h1>"+head+"<h1>";
-        return data;},
-};
-
 var nav={
     barstart:['<nav class="navbar navbar-expand-md bg-dark navbar-dark"><a class="navbar-brand" href="#">',
           //Brand Name
@@ -156,14 +119,7 @@ var slider={
         return this.data[0]+this.data[1]+this.data[2]+this.data[3];
     }
 },
-pgItem={
-    head:'',
-    body:'',
-    get:function(){
-        return head+body;
-    }
-};
-var thisPage={
+thisPage={
     token:'',logged:false,
     initialize:function thisPage(doit=function(){}){
         var self=this;
@@ -190,11 +146,24 @@ var thisPage={
         var self=this;
         var assign=function(data,status){
             self.logged=(data==="1");
+            if(data==="1"){
+                self.getUsrDetails()
+            }
             doit();
         }
         this.requestServer("/checklogin",{}, assign);
     },
-    components:[]
+    components:[],
+    userDetails:{},
+    getUsrDetails:function() {
+        self=this
+        this.requestServer('/usrinfo', {}, function(data,status) {
+            $.get("https://www.googleapis.com/plus/v1/people/"+data.data.gid+"?key="+data.data.api, function(data,status) {
+                self.userDetails=data
+            }, 'json')
+            self.userDetails.email = data.email
+        }, 'json')
+    }
 
 };
 class Button{

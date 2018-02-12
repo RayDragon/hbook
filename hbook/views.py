@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from .models import Users
+from .response import Response
 
 
 def check_user(request):
@@ -32,11 +33,17 @@ def check_user(request):
             if request.session.get('email', '#') != idinfo['email']:
                 Users.logout(request)
         Users.create_account(idinfo['email'], userid)
-        Users.login(request,idinfo['email'])
+        Users.login(request, idinfo['email'])
         error="Okay"
     except ValueError:
         pass
     return HttpResponse(error)
+
+
+def usr_info(request):
+    if not Users.is_logged(request):
+        raise Http404
+    return Response.json(Users.get_details(request.session['id']))
 
 
 def head_hbook(request):
