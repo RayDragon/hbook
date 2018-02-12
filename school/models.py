@@ -42,18 +42,18 @@ class School(models.Model):
         f.file.close()
 
 class Teacher(models.Model):
-    school_ids = models.CommaSeparatedIntegerField()
+    #school_ids = models.CommaSeparatedIntegerField()
     name = models.CharField(max_length=50, null=False)
     roll_number = models.CharField(max_length=20, null=False)
-    lecture_ids = models.CommaSeparatedIntegerField()
+    #lecture_ids = models.CommaSeparatedIntegerField()
     status = models.SmallIntegerField(default=-1)
 
 
 class Student(models.Model):
-    current_school_id = models.PositiveIntegerField(max_length=50, default=0)
+    current_school_id = models.PositiveIntegerField(default=0)
     name = models.CharField(max_length=50, null=False)
     roll_number = models.CharField(max_length=20, null=False)
-    group_ids=models.CommaSeparatedIntegerField()
+    #group_ids=models.CommaSeparatedIntegerField()
     status = models.SmallIntegerField(default=-1)
 
     def apply_to_school(self, school_id):
@@ -66,13 +66,13 @@ class Lecture(models.Model):
     time_from = models.PositiveIntegerField()
     duration = models.PositiveIntegerField()
     repeat = models.SmallIntegerField()
-    attendance = models.CommaSeparatedIntegerField()
+    #attendance = models.CommaSeparatedIntegerField()
 
 
 class Group(models.Model):
     name = models.CharField(max_length=20, null=False)
-    students = models.CommaSeparatedIntegerField()
-    bytearray("asdasd")
+    #students = models.CommaSeparatedIntegerField()
+    #bytearray("asdasd")
 
 
 

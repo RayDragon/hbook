@@ -88,10 +88,11 @@ class MData:
         return b
 
 
+'''
 f=MFile("temp", [10,10])
 print(f.largest_id)
 f.insert_data(["Govind",100])
 #print(f.get_data(3))
 print(f.largest_id)
 #f.delete_data(1)
-''''''
+'''
