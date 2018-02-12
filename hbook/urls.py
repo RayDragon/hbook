@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^signIn', check_user),
     url(r'^get_val', get_csrf),
     url(r'^$', head_hbook),
-    url(r'^signOut', get_logout ),
+    url(r'^signOut', get_logout),
     url(r'^usrinfo', usr_info),
     url(r'^school/', include('school.urls'))
 
