@@ -20,10 +20,10 @@
   margin-bottom: 10px;
 }
 
-#sec1 {
-  background-image: url("back3.jpg");
-  height: 400px;
-}
+/*#sec1 {*/
+  /*background-image: url("back3.jpg");*/
+  /*height: 400px;*/
+/*}*/
 
 #pills-profile-tab {
     color: white;
@@ -37,4 +37,8 @@
 #card1 {
   font-size: 25px;
   color: white;
+}
+
+#text {
+  text-align: center;
 }
